@@ -114,12 +114,12 @@ export function getGitRepositoryPath(fileName: string): Thenable<string> {
 }
 
 export function getFileHistory(rootDir: string, relativeFilePath: string): Thenable<any[]> {
-    return getLog(rootDir, relativeFilePath, ['--max-count=50', '--decorate=full', '--date=default', '--pretty=fuller', '--all', '--parents', '--numstat', '--topo-order', '--raw', relativeFilePath]);
+    return getLog(rootDir, relativeFilePath, ['--max-count=50', '--decorate=full', '--date=default', '--pretty=fuller', '--all', '--parents', '--numstat', '--topo-order', '--raw', '--follow', relativeFilePath]);
 }
 
 export function getLineHistory(rootDir: string, relativeFilePath: string, lineNumber: number): Thenable<any[]> {
     var lineArgs = "-L" + lineNumber + "," + lineNumber + ":" + relativeFilePath.replace(/\\/g, '/');
-    return getLog(rootDir, relativeFilePath, [lineArgs, '--max-count=50', '--decorate=full', '--date=default', '--pretty=fuller', '--numstat', '--topo-order', '--raw']);
+    return getLog(rootDir, relativeFilePath, [lineArgs, '--max-count=50', '--decorate=full', '--date=default', '--pretty=fuller', '--numstat', '--topo-order', '--raw', '--follow']);
 }
 
 function getLog(rootDir: string, relativeFilePath: string, args: string[]): Thenable<any[]> {
